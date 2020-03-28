@@ -24,18 +24,10 @@ public class LongestCommonSequence {
 				}
 			}
 		}
-		printArray(saved);
+		PracticeUtils.printArray(2, saved);
 		return saved[in1.length][in2.length];
 	}
 	
-	private void printArray(int[][] array) {
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array[i].length; j++) {
-				System.out.print(array[i][j] + " ");
-			}
-			System.out.println();
-		}
-	}
 	public static void main(String[] args) {
 		LongestCommonSequence lis1 = new LongestCommonSequence("a", "ba");
 		boolean correct = 1 == lis1.solve();

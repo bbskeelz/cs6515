@@ -24,6 +24,7 @@ public class LongestIncreasingSequence {
 				max = saved[k];
 			}
 		}
+		PracticeUtils.printArray(1, saved);
 		return max;
 	}
 	
