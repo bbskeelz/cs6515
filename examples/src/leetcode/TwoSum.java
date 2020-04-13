@@ -1,4 +1,4 @@
-package dynamicprogramming;
+package leetcode;
 
 import java.util.*;
 /*
