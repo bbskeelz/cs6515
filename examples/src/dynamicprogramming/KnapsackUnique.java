@@ -17,7 +17,6 @@ public class KnapsackUnique{
     }
 
     public int solve(){
-        boolean[] ret = new boolean[values.length+1];
         int[][] savedVdub = new int[values.length+1][constraint+1];
         for (int i = 0; i <= values.length; i++){
             savedVdub[i][0] = 0;  //0 values will never be used

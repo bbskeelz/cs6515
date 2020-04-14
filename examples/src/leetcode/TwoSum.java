@@ -37,7 +37,6 @@ public class TwoSum {
 
 	public static void main(String[] args) {
 		int[] in1 = new int[] {1,2,3};
-        int target = 5;
 		TwoSum lis1 = new TwoSum(in1, 5);
 		int[] answer1 = lis1.solve();
 		System.out.println(answer1[0] + "," + answer1[1]);

@@ -36,7 +36,7 @@ public class ThreeSum {
 				int k = nums[i] + nums[j];
 				if (nums[i] <= 0 && nums[j] > 0)
 					break;
-				List<Integer> retItem = new ArrayList();
+				List<Integer> retItem = new ArrayList<>();
 				if (indexMap.get(0-k) != null) {
 					if (indexMap.get(0-k) == i || indexMap.get(0-k) == j)
 						continue;
