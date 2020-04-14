@@ -14,20 +14,29 @@ public class Palindrome {
 		saved[0][0] = true;
 		int max = 0;
 		int[] maxIndex = new int[]{0,0};
-		for (int i = n / 2 - 1 + n % 2; i >= 0; i--){   // 1 : 0, 2: 0, 3 : 1, 4 : 1, 5 : 2
-			for (int j = n / 2; j < n; j++){  // 1 : 0, 2: 1, 3 : 1, 4 : 2
-				if (i == j){
-					saved[i][j] = true;
+		for (int i = 0; i < n; i++){
+			for (int j = 0; j < n; j++){
+				int l = j; int r = j + i;
+				if (r == in.length)
+					break;
+				if (l == r){
+					saved[l][r] = true;
 					continue;
 				}
-				if (in[i] == in[j]){
-					saved[i][j] = saved[i+1][j-1];
-					if (j-i > max){
-						max = j-i;
-						maxIndex[0] = i; maxIndex[1] = j;
+				if (r - l == 1) {
+					saved[l][r] = in[l] == in[r];
+					max = 1;
+					maxIndex[0] = l; maxIndex[1] = r;
+					continue;
+				}
+				if (in[l] == in[r]){
+					saved[l][r] = saved[l+1][r-1];
+					if (r-l > max && saved[l][r]){
+						max = r-l;
+						maxIndex[0] = l; maxIndex[1] = r;
 					}
 				}else{
-					saved[i][j] = false;
+					saved[l][r] = false;
 				}
 			}
 		}
@@ -37,11 +46,53 @@ public class Palindrome {
 		System.out.println();
 		return max+1;
 	}
+	
+    public String longestPalindrome(String s) {
+        char[] in = s.toCharArray();
+        int n = in.length;
+		boolean[][] saved = new boolean[in.length][in.length];
+		saved[0][0] = true;
+		int max = 0;
+		int[] maxIndex = new int[]{0,0};
+		for (int i = 0; i < n; i++){
+			for (int j = 0; j < n; j++){
+				int l = j; int r = j + i;
+				if (r == in.length)
+					break;
+				if (l == r){
+					saved[l][r] = true;
+					continue;
+				}
+                if (r - l == 1) {
+					saved[l][r] = in[l] == in[r];
+					max = 1;
+					maxIndex[0] = l; maxIndex[1] = r;
+					continue;
+				}
+				if (in[l] == in[r]){
+					saved[l][r] = saved[l+1][r-1];
+					if (r-l == max && saved[l][r]){
+						max = r-l;
+                        System.out.println(max);
+						maxIndex[0] = l; maxIndex[1] = r;
+					}
+				}else{
+					saved[l][r] = false;
+				}
+			}
+		}
+        StringBuilder sb = new StringBuilder();
+		for (int i = maxIndex[0]; i < maxIndex[1]+1; i++) {
+			sb.append(in[i]);
+		}
+		return sb.toString();
+    }
 
 	public static void main(String[] args) {
-		String in1 = "aa";
+		String in1 = "babad";
 		Palindrome lis1 = new Palindrome(in1);
-		boolean correct1 = 2 == lis1.solve();
+		boolean correct1 = 3 == lis1.solve();
+		System.out.println(lis1.longestPalindrome(in1));
 		System.out.println(correct1);
 
 		String in2 = "aba";
@@ -49,14 +100,14 @@ public class Palindrome {
 		boolean correct2 = 3 == lis2.solve();
 		System.out.println(correct2);
 
-		String in3 = "a";
+		String in3 = "aaaaaaaafaaaaaaaa";
 		Palindrome lis3 = new Palindrome(in3);
-		boolean correct3 = 1 == lis3.solve();
+		boolean correct3 = 17 == lis3.solve();
 		System.out.println(correct3);
 
-		String in4 = "a";
+		String in4 = "aaaaaaaafghbbbbbkbbbbb";
 		Palindrome lis4 = new Palindrome(in4);
-		boolean correct4 = 1 == lis4.solve();
+		boolean correct4 = 11 == lis4.solve();
 		System.out.println(correct4);
 
 		String in5 = "forgeeksskeegfor";
