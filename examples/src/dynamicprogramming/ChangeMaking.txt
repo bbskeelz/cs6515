@@ -1,0 +1,14 @@
+Given an unlimited supply of coins of denominations x1, x2, . . . , xn, we wish to make change for a value v; that is, we wish to find a set of coins whose total value is v. This might not be possible:
+for instance, if the denominations are 5 and 10 then we can make change for 15 but not for 12.
+Give an O(nv) dynamic-programming algorithm for the following problem.
+Input: x1, . . . , xn; v.
+Question: Is it possible to make change for v using coins of denominations x1, . . . , xn?
+
+for (i = 1 -> v) fill single boolean array[v] of incremental true/false.
+
+for (j = 1 -> n)
+    if (j > i) continue;
+    if (j == i) true;
+    if (j < i)
+        if (saved[i-j] == true) saved[i] = true;
+    continue;
