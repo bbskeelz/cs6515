@@ -35,6 +35,7 @@ public class KnapsackUnique{
                     Math.max(v + savedVdub[i-1][j-w], savedVdub[i-1][j]);
             }
         }
+        PracticeUtils.printArray(2, savedVdub);
         return savedVdub[values.length][constraint];
     }
 
